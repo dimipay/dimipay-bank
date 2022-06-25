@@ -32,7 +32,7 @@ def getTransactions():
         days=1,
         PHANTOM_PATH='./phantomjs'
     )
-    return jsonify(transaction_list)
+    return jsonify(transaction_list[:5])
 
 if __name__ == "__main__":
     app.run()

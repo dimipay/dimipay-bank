@@ -2,3 +2,4 @@
 .venv
 phantomjs*
 ghostdriver.log
+__pycache__
