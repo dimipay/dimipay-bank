@@ -13,10 +13,8 @@ def apiAuthentication(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         access_token = request.headers.get("Authorization")
-        print(access_token, os.getenv("API_KEY"))
         if access_token is not None:
             if (access_token != os.getenv("API_KEY")):
-                print("asdfs")
                 return Response(status=401)
         else:
             return Response(status=401)
