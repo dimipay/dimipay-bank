@@ -12,7 +12,7 @@ app = Flask(__name__)
 def apiAuthentication(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        access_token = request.headers.get("Authorization")
+        access_token = request.headers.get("Authorization").split(" ")[1]
         if access_token is not None:
             if (access_token != os.getenv("API_KEY")):
                 return Response(status=401)
@@ -29,8 +29,7 @@ def getTransactions():
         bank_num=os.getenv('ACCOUNT_NUM'),
         birthday=os.getenv('BUSINESS_NUM'),
         password=os.getenv('ACCOUNT_PIN'),
-        days=1,
-        PHANTOM_PATH='./phantomjs'
+        days=1
     )
     return jsonify(transaction_list[:5])
 
